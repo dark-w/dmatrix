@@ -163,7 +163,7 @@ Matrix solve(const Matrix& A, const Matrix& b) {
 	return X;
 }
 
-Matrix Matrix::identity() const {
+Matrix Matrix::get_identity() const {
 	Matrix identity_matrix(_rows, _rows, 0);
 
 	for (int i = 0; i < _rows; i++) {
@@ -173,11 +173,37 @@ Matrix Matrix::identity() const {
 	return identity_matrix;
 }
 
-Matrix Matrix::inverse_by_Guass_Jordan_elimination() const {
+Matrix& Matrix::exchange_two_rows(int a, int b) {
+	for (int i = 0; i < _cols; i++) {
+		double t = (*this)(a, i);
+		(*this)(a, i) = (*this)(b, i);
+		(*this)(b, i) = t;
+	}
+	
+	return *this;
+}
+
+Matrix& Matrix::transpose() {
+	return *this;
+}
+
+Matrix 
+Matrix::get_permutation(std::initializer_list<std::pair<int, int>> indices) 
+const {
+	Matrix p(get_identity());
+
+	for (auto i : indices) {
+		p.exchange_two_rows(i.first, i.second);
+	}
+
+	return p;
+}
+
+Matrix Matrix::get_inverse_by_Guass_Jordan_elimination() const {
 	// Guass-Jordan Enimination
 	// E[AI] = [I(A^-1)]
 	
-	Matrix I(this->identity());
+	Matrix I(this->get_identity());
 	Matrix A(*this);
 
 	for (int i = 0; i < _rows; i++) {
@@ -219,8 +245,8 @@ Matrix Matrix::inverse_by_Guass_Jordan_elimination() const {
 }
 
 // it only works for square matrix
-std::pair<Matrix, Matrix> Matrix::LU() const {
-	Matrix L(identity());
+std::pair<Matrix, Matrix> Matrix::get_LU() const {
+	Matrix L(get_identity());
 	Matrix U(_rows, _cols, 0);
 	Matrix A(*this);
 

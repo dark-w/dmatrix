@@ -42,10 +42,13 @@ int main()
 	// 	A.inverse_by_Guass_Jordan_elimination();
 	// std::cout << (A * b) * (A * b).inverse_by_Guass_Jordan_elimination() << std::endl;
 	std::cout << "L" << std::endl;
-	std::cout << A.LU().first; 
+	std::cout << A.get_LU().first; 
 	std::cout << "U" << std::endl;
-	std::cout << A.LU().second;
+	std::cout << A.get_LU().second;
 	std::cout << "L * U" << std::endl;
-	std::cout << A.LU().first * A.LU().second;
+	std::cout << A.get_LU().first * A.get_LU().second;
+
+	std::cout << A.exchange_two_rows(0, 1);
+	std::cout << A.get_permutation({{1, 2}});
 	return 0;
 }

@@ -19,9 +19,13 @@ public:
 	int get_rows() const { return _rows; }
 	int get_cols() const { return _cols; }
 
-	Matrix identity() const;
-	Matrix inverse_by_Guass_Jordan_elimination() const;
-	std::pair<Matrix, Matrix> LU() const;
+	Matrix get_identity() const;
+	Matrix get_permutation(std::initializer_list<std::pair<int, int>>) const;
+	Matrix get_inverse_by_Guass_Jordan_elimination() const;
+	std::pair<Matrix, Matrix> get_LU() const;
+
+	Matrix& exchange_two_rows(int, int);
+	Matrix& transpose();
 
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& m);
 	friend Matrix solve(const Matrix& A, const Matrix& X);
