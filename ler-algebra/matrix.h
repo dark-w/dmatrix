@@ -21,6 +21,7 @@ public:
 
 	Matrix get_identity() const;
 	Matrix get_permutation(std::initializer_list<std::pair<int, int>>) const;
+	Matrix get_symmetric() const;
 	Matrix get_inverse_by_Guass_Jordan_elimination() const;
 	std::pair<Matrix, Matrix> get_LU() const;
 

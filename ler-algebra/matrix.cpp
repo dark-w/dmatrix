@@ -192,6 +192,7 @@ Matrix& Matrix::transpose() {
 			(*this)(j, i) = t;
 		}
 	}
+
 	return *this;
 }
 
@@ -205,6 +206,11 @@ const {
 	}
 
 	return p;
+}
+
+Matrix Matrix::get_symmetric() const {
+	Matrix symmetric_matrix(*this);
+	return *this * symmetric_matrix.transpose();
 }
 
 Matrix Matrix::get_inverse_by_Guass_Jordan_elimination() const {

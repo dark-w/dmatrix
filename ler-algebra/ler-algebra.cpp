@@ -51,5 +51,6 @@ int main()
 	// std::cout << A.exchange_two_rows(0, 1);
 	std::cout << A.get_permutation({{1, 2}});
 	std::cout << A.transpose();
+	std::cout << A.get_symmetric();
 	return 0;
 }
