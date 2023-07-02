@@ -162,3 +162,58 @@ Matrix solve(const Matrix& A, const Matrix& b) {
 
 	return X;
 }
+
+Matrix Matrix::identity() const {
+	Matrix identity_matrix(_rows, _rows, 0);
+
+	for (int i = 0; i < _rows; i++) {
+		identity_matrix(i, i) = 1;
+	}
+
+	return identity_matrix;
+}
+
+Matrix Matrix::inverse_by_Guass_Jordan_elimination() const {
+	// Guass-Jordan Enimination
+	// E[AI] = [I(A^-1)]
+	
+	Matrix I(this->identity());
+	Matrix A(*this);
+	
+	for (int i = 0; i < _rows; i++) {
+		for (int j = i + 1; j < _rows; j++) {
+			double ec = A(j, i) / A(i, i);
+			for (int k = 0; k < _cols; k++) {
+				A(j, k) = A(j, k) - ec * A(i, k);
+				I(j, k) = I(j, k) - ec * I(i, k);
+			}
+		}
+	}
+
+	// A is U now, but i need I, so continue
+	for (int i = _rows - 1; i >= 0; i--) {
+		// the pivot must be one
+		double pivot_to_one = A(i, i) / 1;
+		for (int j = 0; j < _cols; j++) {
+			A(i, j) = A(i, j) / pivot_to_one;
+			I(i, j) = I(i, j) / pivot_to_one;
+		}
+
+		for (int j = i - 1; j >= 0 ; j--) {
+			double ec = A(j, i) / A(i, i);
+			for (int k = 0; k < _cols; k++) {
+				A(j, k) = A(j, k) - ec * A(i, k);
+				I(j, k) = I(j, k) - ec * I(i, k);
+			}
+		}
+	}
+
+	// the pivot must be one
+	double pivot_to_one = A(0, 0) / 1;
+	for (int j = 0; j < _cols; j++) {
+		A(0, j) = A(0, j) / pivot_to_one;
+		I(0, j) = I(0, j) / pivot_to_one;
+	}
+
+	return I;
+}

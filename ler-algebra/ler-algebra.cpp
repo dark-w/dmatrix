@@ -23,9 +23,15 @@ int main()
 	// std::cout << A * b;
 	// std::cout << solve(A, b);
 
-	Matrix A {{1, 2, 3}, {2, 5, 6}, {1, 6, 1}};
-	Matrix b {{1}, {3}, {6}};
-	std::cout << A * b;
-	std::cout << solve(A, b);
+	// Matrix A {{1, 2, 3}, {2, 5, 6}, {1, 6, 1}};
+	// Matrix b {{1}, {3}, {6}};
+	// std::cout << A * b;
+	// std::cout << solve(A, b);
+
+	Matrix A {{1, 3}, {2, 7}};
+	Matrix A_inverse(A.inverse_by_Guass_Jordan_elimination());
+	std::cout << A_inverse;
+	std::cout << A * A_inverse;
+	std::cout << A_inverse * A;
 	return 0;
 }

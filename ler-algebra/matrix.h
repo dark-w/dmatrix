@@ -19,8 +19,11 @@ public:
 	int get_rows() const { return _rows; }
 	int get_cols() const { return _cols; }
 
+	Matrix identity() const;
+	Matrix inverse_by_Guass_Jordan_elimination() const;
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& m);
 	friend Matrix solve(const Matrix& A, const Matrix& X);
+
 	~Matrix() {
 		for (int i = 0; i < _rows; i++)
 			delete[] _data[i];
