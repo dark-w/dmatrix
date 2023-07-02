@@ -183,7 +183,15 @@ Matrix& Matrix::exchange_two_rows(int a, int b) {
 	return *this;
 }
 
+// it only works for square matrix now.
 Matrix& Matrix::transpose() {
+	for (int i = 1; i < _rows; i++) {
+		for (int j = 0; j < i; j++) {
+			double t = (*this)(i, j);
+			(*this)(i, j) = (*this)(j, i);
+			(*this)(j, i) = t;
+		}
+	}
 	return *this;
 }
 

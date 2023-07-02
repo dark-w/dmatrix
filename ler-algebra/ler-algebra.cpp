@@ -48,7 +48,8 @@ int main()
 	std::cout << "L * U" << std::endl;
 	std::cout << A.get_LU().first * A.get_LU().second;
 
-	std::cout << A.exchange_two_rows(0, 1);
+	// std::cout << A.exchange_two_rows(0, 1);
 	std::cout << A.get_permutation({{1, 2}});
+	std::cout << A.transpose();
 	return 0;
 }
