@@ -21,6 +21,8 @@ public:
 
 	Matrix identity() const;
 	Matrix inverse_by_Guass_Jordan_elimination() const;
+	std::pair<Matrix, Matrix> LU() const;
+
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& m);
 	friend Matrix solve(const Matrix& A, const Matrix& X);
 

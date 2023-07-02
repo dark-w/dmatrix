@@ -179,7 +179,7 @@ Matrix Matrix::inverse_by_Guass_Jordan_elimination() const {
 	
 	Matrix I(this->identity());
 	Matrix A(*this);
-	
+
 	for (int i = 0; i < _rows; i++) {
 		for (int j = i + 1; j < _rows; j++) {
 			double ec = A(j, i) / A(i, i);
@@ -216,4 +216,26 @@ Matrix Matrix::inverse_by_Guass_Jordan_elimination() const {
 	}
 
 	return I;
+}
+
+// it only works for square matrix
+std::pair<Matrix, Matrix> Matrix::LU() const {
+	Matrix L(identity());
+	Matrix U(_rows, _cols, 0);
+	Matrix A(*this);
+
+	for (int i = 0; i < _rows; i++) {
+		for (int j = i; j < _cols; j++) {
+			U(i, j) = A(i, j);
+		}
+
+		for (int j = i + 1; j < _rows; j++) {
+			L(j, i) = A(j, i) / A(i, i);
+			for (int k = i + 1; k < _cols; k++) {
+				A(j, k) = A(j, k) - L(j, i) * A(i, k);				
+			}
+		}
+	}
+
+	return {L, U};
 }
