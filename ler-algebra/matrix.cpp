@@ -213,6 +213,22 @@ Matrix Matrix::get_symmetric() const {
 	return *this * symmetric_matrix.transpose();
 }
 
+Matrix Matrix::get_rank() const {
+	Matrix rank;
+	return rank;
+}
+
+// reduced rows echelon form of A
+Matrix Matrix::get_rref() const {
+	Matrix rref;
+	return rref;
+}
+
+Matrix Matrix::get_nullspace_base() const {
+	Matrix nullspace_base;
+	return nullspace_base;
+}
+
 Matrix Matrix::get_inverse_by_Guass_Jordan_elimination() const {
 	// Guass-Jordan Enimination
 	// E[AI] = [I(A^-1)]

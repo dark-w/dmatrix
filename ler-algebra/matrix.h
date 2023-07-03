@@ -22,6 +22,9 @@ public:
 	Matrix get_identity() const;
 	Matrix get_permutation(std::initializer_list<std::pair<int, int>>) const;
 	Matrix get_symmetric() const;
+	Matrix get_rank() const;
+	Matrix get_rref() const; // reduced rows echelon form of A
+	Matrix get_nullspace_base() const;
 	Matrix get_inverse_by_Guass_Jordan_elimination() const;
 	std::pair<Matrix, Matrix> get_LU() const;
 
