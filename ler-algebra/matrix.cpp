@@ -251,7 +251,7 @@ Matrix Matrix::get_inverse_by_Guass_Jordan_elimination() const {
 		// the pivot must be one
 		double pivot_to_one = A(i, i) / 1;
 		for (int j = 0; j < _cols; j++) {
-			A(i, j) = A(i, j) / pivot_to_one;
+			A(i, j) = A(i, j) / pivot_to_one; 
 			I(i, j) = I(i, j) / pivot_to_one;
 		}
 
